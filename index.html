@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIQUETE – Código, IA e Liberdade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        dark: '#1F2937',
+                        darker: '#111827',
+                        accent: '#F59E0B',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(90deg, #3B82F6, #10B981);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #3B82F6;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover:after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg fixed w-full z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-robot text-primary text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-dark">PIQUETE</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Início</a>
+                    <a href="#prompts" class="nav-link text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Prompts</a>
+                    <a href="#scripts" class="nav-link text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Scripts</a>
+                    <a href="#apps" class="nav-link text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Apps</a>
+                    <a href="#contato" class="nav-link text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Contato</a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary focus:outline-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Início</a>
+                <a href="#prompts" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Prompts</a>
+                <a href="#scripts" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Scripts</a>
+                <a href="#apps" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Apps</a>
+                <a href="#contato" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-dark mb-6">
+                <span class="gradient-text">PIQUETE</span> – Código, IA e Liberdade
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-10">
+                Sou um criador angolano e neste espaço compartilho conhecimento real sobre como usar IA para criar apps, automações e transformar ideias em realidade.
+            </p>
+            
+            <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-xl shadow-lg">
+                <iframe class="absolute top-0 left-0 w-full h-full"
+                    src="https://www.youtube.com/embed/R12qtH2ufks"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-4 mt-8">
+                <a href="#" class="flex items-center px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
+                    <i class="fab fa-youtube mr-2"></i> YouTube
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition">
+                    <i class="fab fa-tiktok mr-2"></i> TikTok
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition">
+                    <i class="fab fa-instagram mr-2"></i> Instagram
+                </a>
+                <a href="https://chat.whatsapp.com/BiDE2pul0uS1YU7UvTzjxw" class="flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+                    <i class="fab fa-whatsapp mr-2"></i> Grupo WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prompts Section -->
+    <section id="prompts" class="py-16 bg-white px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-dark mb-4">Prompts de IA</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Coleção dos melhores prompts que uso nos meus vídeos para criar apps e scripts com IA
+                </p>
+            </div>
+            
+            <div class="mb-8 max-w-md mx-auto">
+                <div class="relative">
+                    <input type="text" placeholder="Buscar prompts..." class="w-full px-4 py-3 pl-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    <i class="fas fa-search absolute left-3 top-3.5 text-gray-400"></i>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Featured Prompt -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300 card-hover border-l-4 border-accent">
+                    <div class="p-6">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-accent text-white text-xs font-semibold px-2.5 py-0.5 rounded">Destaque</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-3">  Prompt completo para criar um aplicativo funcional usando ChatGPT, Base44</h3>
+                        <p class="text-gray-600 mb-4">
+                            Prompt completo para criar um aplicativo funcional usando ChatGPT, Base44
+                        </p>
+                      <!-- Botão com o texto no atributo data -->
+<button onclick="copyPromptFromData(this)"
+data-prompt="Agora você é um profissional completo de marketing, especialista em todas as áreas e um estrategista nato, com mentalidade de futuro empreendedor de sucesso. Suas respostas sempre serão verdadeiras, bem elaboradas e pensadas para gerar oportunidades de negócios que fazem qualquer pessoa refletir e agir.
+
+Você age como um verdadeiro empreendedor: não depende da internet para copiar ideias, porque já entende que quanto mais original for sua estratégia, maior será a chance de sucesso. Seu foco principal é o mercado digital, onde você acredita que “quem controla os dados controla tudo” e “quem controla a atenção, controla tudo”.
+
+Você é determinado e fará o impossível para realizar seus objetivos, independente do que as pessoas digam. Você é um ser humano movido por sucesso e superação.
+
+Antes de qualquer resposta, você sempre começa com uma frase simples e inspiradora em itálico, transmitindo motivação e foco total.
+Você sabe que não tem muitos recursos financeiros no momento, mas domina estratégias de tráfego orgânico e outros métodos inteligentes de marketing. Por isso, cria funis, estratégias e respostas que superam qualquer ferramenta de IA como GPT, DeepSeek, Gemini, Llama, Siri ou qualquer outra. Você pensa como um ser humano que entende as dores e desejos das pessoas.
+
+Seu diferencial está em pensar fora da caixa, antecipar tendências e executar estratégias que geram resultados reais no mercado digital.
+
+
+
+➡️ Base44 não 'entendem' contexto como eu, mas elas obedecem se tu segmentar o pedido etapa por etapa.
+
+➡️ Então cria um prompt que NÃO explica o projeto como um todo, mas SIM manda passo por passo o que elas têm que configurar, sem chance de confundir. Divida em 3 passos."
+class="w-full flex items-center justify-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition">
+<i class="far fa-copy mr-2"></i> Copiar Prompt
+</button>
+
+                    </div>
+                </div>
+                
+                <!-- Regular Prompts -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300 card-hover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-dark mb-3">Automação de Tarefas</h3>
+                        <p class="text-gray-600 mb-4">
+                           Brevimente no canal piquete 
+                        </p>
+                        <!-- Botão com o texto no atributo data -->
+<button onclick="copyPromptFromData(this)"
+data-prompt="Você ficou curioso nè , vai no canal do youtube , partilha mesmo com as tropas "
+class="w-full flex items-center justify-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition">
+<i class="far fa-copy mr-2"></i> Copiar Prompt
+</button>
+
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300 card-hover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-dark mb-3">Análise de Dados</h3>
+                        <p class="text-gray-600 mb-4">
+                            Brevimente no canal piquete 
+                         </p>
+                         <!-- Botão com o texto no atributo data -->
+ <button onclick="copyPromptFromData(this)"
+ data-prompt="Você ficou curioso nè , vai no canal do youtube , partilha mesmo com as tropas "
+ class="w-full flex items-center justify-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition">
+ <i class="far fa-copy mr-2"></i> Copiar Prompt
+ </button>
+ 
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300 card-hover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-dark mb-3">API Integration</h3>
+                        <p class="text-gray-600 mb-4">
+                            Brevimente no canal piquete 
+                         </p>
+                         <!-- Botão com o texto no atributo data -->
+ <button onclick="copyPromptFromData(this)"
+ data-prompt="Você ficou curioso nè , vai no canal do youtube , partilha mesmo com as tropas "
+ class="w-full flex items-center justify-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition">
+ <i class="far fa-copy mr-2"></i> Copiar Prompt
+ </button>
+ 
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300 card-hover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-dark mb-3">Web Scraping</h3>
+                        <p class="text-gray-600 mb-4">
+                            Brevimente no canal piquete 
+                         </p>
+                         <!-- Botão com o texto no atributo data -->
+ <button onclick="copyPromptFromData(this)"
+ data-prompt="Você ficou curioso nè , vai no canal do youtube , partilha mesmo com as tropas "
+ class="w-full flex items-center justify-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition">
+ <i class="far fa-copy mr-2"></i> Copiar Prompt
+ </button>
+ 
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300 card-hover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-dark mb-3">Chatbot Personalizado</h3>
+                        <p class="text-gray-600 mb-4">
+                            Brevimente no canal piquete 
+                         </p>
+                         <!-- Botão com o texto no atributo data -->
+ <button onclick="copyPromptFromData(this)"
+ data-prompt="Você ficou curioso nè , vai no canal do youtube , partilha mesmo com as tropas "
+ class="w-full flex items-center justify-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition">
+ <i class="far fa-copy mr-2"></i> Copiar Prompt
+ </button>
+ 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts Section -->
+    <section id="scripts" class="py-16 bg-gray-50 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-dark mb-4">Scripts e Ferramentas</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Soluções que uso para automatizar tarefas e criar resultados de forma inteligente — algumas delas você verá em ação nos meus conteúdos.
+                </p>
+            </div>
+    
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 transition duration-300 card-hover">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                            <i class="fas fa-folder-open text-primary text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-dark mb-1">Organizador de Arquivos</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Transforme pastas bagunçadas em ambientes limpos com um único clique. Discreto e funcional.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-primary hover:text-blue-700 font-medium">
+                        <i class="fab fa-github mr-2"></i> Ver Código
+                    </a>
+                </div>
+    
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 transition duration-300 card-hover">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                            <i class="fas fa-comments text-primary text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-dark mb-1">Automação no WhatsApp</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Uma automação simples que faz muito barulho. Você nunca mais vai precisar digitar tudo de novo.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-primary hover:text-blue-700 font-medium">
+                        <i class="fab fa-github mr-2"></i> Ver Código
+                    </a>
+                </div>
+    
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 transition duration-300 card-hover">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                            <i class="fas fa-chart-pie text-primary text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-dark mb-1">Analisador Inteligente</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Coleta, interpreta e transforma dados em decisões. Um verdadeiro radar silencioso.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-primary hover:text-blue-700 font-medium">
+                        <i class="fab fa-github mr-2"></i> Ver Código
+                    </a>
+                </div>
+    
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 transition duration-300 card-hover">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                            <i class="fas fa-shield-alt text-primary text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-dark mb-1">Backup Silencioso</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Ele roda sem avisar e protege tudo que importa. Sua segurança agora é invisível, mas presente.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-primary hover:text-blue-700 font-medium">
+                        <i class="fab fa-github mr-2"></i> Ver Código
+                    </a>
+                </div>
+    
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 transition duration-300 card-hover">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                            <i class="fas fa-paper-plane text-primary text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-dark mb-1">Disparador de Emails</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Precisa entregar mensagens em massa sem ser genérico? Essa ferramenta cuida disso por você.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-primary hover:text-blue-700 font-medium">
+                        <i class="fab fa-github mr-2"></i> Ver Código
+                    </a>
+                </div>
+    
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 transition duration-300 card-hover">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                            <i class="fas fa-search text-primary text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-dark mb-1">Coletor de Dados</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Explora sites, coleta informações e organiza tudo de forma limpa. Sutil, mas potente.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-primary hover:text-blue-700 font-medium">
+                        <i class="fab fa-github mr-2"></i> Ver Código
+                    </a>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Apps Section -->
+    <section id="apps" class="py-16 bg-white px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-dark mb-4">Ferramentas Ultra Inteligentes</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Apps desenvolvidos com apoio de IA, pensados para gerar resultado no mundo real — do marketing digital à automação estratégica.
+                </p>
+            </div>
+    
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    
+                <!-- App 1 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md transition duration-300 card-hover">
+                    <div class="md:flex">
+                        <div class="md:w-48 bg-primary flex items-center justify-center p-6">
+                            <i class="fas fa-rocket text-white text-5xl"></i>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-xl font-semibold text-dark mb-2">Lançador de Landing Pages</h3>
+                            <p class="text-gray-600 mb-4">
+                                Uma máquina de conversão. Insira sua ideia, clique, e receba uma landing page pronta para capturar atenção — e leads.
+                            </p>
+                            <div class="flex space-x-3">
+                                <a href="#" class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition">
+                                    <i class="fab fa-github mr-2"></i> Código
+                                </a>
+                                <a href="#" class="inline-flex items-center px-4 py-2 border border-primary text-primary rounded-lg hover:bg-blue-50 transition">
+                                    <i class="fas fa-external-link-alt mr-2"></i> Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- App 2 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md transition duration-300 card-hover">
+                    <div class="md:flex">
+                        <div class="md:w-48 bg-secondary flex items-center justify-center p-6">
+                            <i class="fas fa-brain text-white text-5xl"></i>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-xl font-semibold text-dark mb-2">CopyMaster AI</h3>
+                            <p class="text-gray-600 mb-4">
+                                Treinado com documentos e estratégias de vendas, esse bot responde como um copywriter experiente. Ideal para atendimento, SAC e fechamento.
+                            </p>
+                            <div class="flex space-x-3">
+                                <a href="#" class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition">
+                                    <i class="fab fa-github mr-2"></i> Código
+                                </a>
+                                <a href="#" class="inline-flex items-center px-4 py-2 border border-primary text-primary rounded-lg hover:bg-blue-50 transition">
+                                    <i class="fas fa-external-link-alt mr-2"></i> Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- App 3 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md transition duration-300 card-hover">
+                    <div class="md:flex">
+                        <div class="md:w-48 bg-accent flex items-center justify-center p-6">
+                            <i class="fas fa-scroll text-white text-5xl"></i>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-xl font-semibold text-dark mb-2">Contrato Ninja</h3>
+                            <p class="text-gray-600 mb-4">
+                                Preencha poucas perguntas e receba contratos prontos, otimizados e personalizados para seu tipo de negócio. Ideal para freelancers, agências e prestadores.
+                            </p>
+                            <div class="flex space-x-3">
+                                <a href="#" class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition">
+                                    <i class="fab fa-github mr-2"></i> Código
+                                </a>
+                                <a href="#" class="inline-flex items-center px-4 py-2 border border-primary text-primary rounded-lg hover:bg-blue-50 transition">
+                                    <i class="fas fa-external-link-alt mr-2"></i> Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- App 4 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md transition duration-300 card-hover">
+                    <div class="md:flex">
+                        <div class="md:w-48 bg-purple-600 flex items-center justify-center p-6">
+                            <i class="fas fa-signal text-white text-5xl"></i>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-xl font-semibold text-dark mb-2">Radar de Dados</h3>
+                            <p class="text-gray-600 mb-4">
+                                Não é só um analisador. É um radar que transforma planilhas em mapas visuais de decisões — essencial para quem vende, gere tráfego ou roda campanhas.
+                            </p>
+                            <div class="flex space-x-3">
+                                <a href="#" class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition">
+                                    <i class="fab fa-github mr-2"></i> Código
+                                </a>
+                                <a href="#" class="inline-flex items-center px-4 py-2 border border-primary text-primary rounded-lg hover:bg-blue-50 transition">
+                                    <i class="fas fa-external-link-alt mr-2"></i> Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <i class="fas fa-robot text-primary text-2xl mr-2"></i>
+                    <span class="text-xl font-bold">PIQUETE</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-300 hover:text-white">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white">
+                        <i class="fab fa-tiktok text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="https://chat.whatsapp.com/BiDE2pul0uS1YU7UvTzjxw" class="text-gray-300 hover:text-white">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center md:text-left">
+                <p class="text-gray-400 text-sm">
+                    &copy; 2023 PIQUETE. Todos os direitos reservados. Conteúdo criado com ❤️ em Angola.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Copy prompt function
+      
+    function copyPromptFromData(el) {
+        const text = el.getAttribute("data-prompt");
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Prompt copiado com sucesso!");
+        });
+    }
+
+
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
